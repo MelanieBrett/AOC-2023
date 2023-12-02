@@ -9,5 +9,6 @@ public class Main {
     System.out.println("Hello and welcome!");
 
     Day01.day01();
+    Day02.day02();
   }
 }
