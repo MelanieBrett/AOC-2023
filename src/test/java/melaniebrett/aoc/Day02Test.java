@@ -17,13 +17,12 @@ class Day02Test {
     assertEquals(8, answer);
   }
 
-  //  @Test
-  //  public void day01_part2() {
-  //    List<String> input = Utils.getInputLines(Path.of("src/test/resources/Day01_part2.txt"));
-  //
-  //    int answer = Day01.part2(input);
-  //
-  //    assertEquals(281, answer);
-  //  }
+  @Test
+  public void day01_part2() {
+    List<String> input = Utils.getInputLines(Path.of("src/test/resources/Day02_part1.txt"));
 
+    int answer = Day02.part2(input);
+
+    assertEquals(2286, answer);
+  }
 }

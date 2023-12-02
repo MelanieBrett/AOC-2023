@@ -38,12 +38,16 @@ public record Bag(int blueCount, int redCount, int greenCount) {
   }
 
   public Bag increaseBag(Bag other) {
-    if (other.contains(other)) {
+    if (this.contains(other)) {
       return this;
     }
     return new Bag(
         max(this.blueCount, other.blueCount),
         max(this.redCount, other.redCount),
         max(this.greenCount, other.greenCount));
+  }
+
+  public int power() {
+    return this.blueCount() * this.redCount() * this.greenCount();
   }
 }
