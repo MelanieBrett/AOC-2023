@@ -10,5 +10,6 @@ public class Main {
 
     Day01.solution();
     Day02.solution();
+    Day03.solution();
   }
 }
