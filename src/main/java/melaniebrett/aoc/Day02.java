@@ -14,7 +14,7 @@ public class Day02 {
   static final Logger logger = LoggerFactory.getLogger(Day02.class);
   static final Path inputPath = new Utils().loadFileAsPath("Day02.txt");
 
-  public static void day02() {
+  public static void solution() {
     List<String> inputs = Utils.getInputLines(inputPath);
 
     logger.info("Day 02");

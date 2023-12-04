@@ -10,7 +10,7 @@ public class Day01 {
   static final Logger logger = LoggerFactory.getLogger(Day01.class);
   static final Path inputPath = new Utils().loadFileAsPath("Day01.txt");
 
-  public static void day01() {
+  public static void solution() {
     List<String> inputs = Utils.getInputLines(inputPath);
 
     logger.info("Day 01");

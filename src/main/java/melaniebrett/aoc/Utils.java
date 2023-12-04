@@ -27,7 +27,7 @@ public class Utils {
     try {
       return Files.readAllLines(inputPath);
     } catch (IOException e) {
-      return null;
+      return List.of();
     }
   }
 }

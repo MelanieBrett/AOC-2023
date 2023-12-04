@@ -8,7 +8,7 @@ public class Main {
     // IntelliJ IDEA suggests fixing it.
     System.out.println("Hello and welcome!");
 
-    Day01.day01();
-    Day02.day02();
+    Day01.solution();
+    Day02.solution();
   }
 }
