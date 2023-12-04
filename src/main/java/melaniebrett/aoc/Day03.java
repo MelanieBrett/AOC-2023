@@ -14,13 +14,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class Day03 {
-  static final Logger logger = LoggerFactory.getLogger(Day03.class);
-  static final Path inputPath = new Utils().loadFileAsPath("Day03.txt");
+  private static final String DAY = "03";
+  private static final Logger logger = LoggerFactory.getLogger(Day03.class);
+  private static final Path inputPath = new Utils().loadFileAsPath(String.format("Day%s.txt", DAY));
 
   public static void solution() {
     List<String> inputs = Utils.getInputLines(inputPath);
 
-    logger.info("Day 03");
+    logger.info("Day " + DAY);
     logger.info("Part 1: {}", part1(inputs));
     //    Part 1: 559667
     logger.info("Part 2: {}", part2(inputs));

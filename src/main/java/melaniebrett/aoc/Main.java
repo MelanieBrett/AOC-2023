@@ -1,15 +1,30 @@
 package melaniebrett.aoc;
 
-// Press ⇧ twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
 public class Main {
+  private static final String adventOfCodePath = "src/main/resources/AdventOfCode.txt";
+
   public static void main(String[] args) {
-    // Press ⌥⏎ with your caret at the highlighted text to see how
-    // IntelliJ IDEA suggests fixing it.
-    System.out.println("Hello and welcome!");
+    welcome();
 
     Day01.solution();
     Day02.solution();
     Day03.solution();
+  }
+
+  private static void welcome() {
+    System.out.println("Hello and welcome to Advent of Code 2023!");
+
+    try (BufferedReader br = new BufferedReader(new FileReader(adventOfCodePath))) {
+      String line;
+      while ((line = br.readLine()) != null) {
+        System.out.println(line);
+      }
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 }
