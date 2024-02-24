@@ -1,5 +1,9 @@
 package melaniebrett.aoc.models;
 
+import static melaniebrett.aoc.models.Card.ACE;
+import static melaniebrett.aoc.models.Card.WILD;
+
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -13,9 +17,29 @@ public enum PokerHands {
   ONE_PAIR,
   HIGH_CARD;
 
-  public static PokerHands getStrength(Hand hand) {
+  public static PokerHands getStrengthWild(Hand hand) {
     Map<String, Long> cards = hand.cardCount();
 
+    if (cards.containsKey(WILD.getValue())) {
+      Long currentWild = cards.get(WILD.getValue());
+      cards.remove(WILD.getValue());
+
+      if (cards.isEmpty()) {
+        cards.put(ACE.getValue(), currentWild);
+      } else {
+        String maxCard = Collections.max(cards.entrySet(), Map.Entry.comparingByValue()).getKey();
+        cards.replace(maxCard, cards.get(maxCard) + currentWild);
+      }
+    }
+    return getStrength(hand, cards);
+  }
+
+  public static PokerHands getStrength(Hand hand) {
+    Map<String, Long> cards = hand.cardCount();
+    return getStrength(hand, cards);
+  }
+
+  private static PokerHands getStrength(Hand hand, Map<String, Long> cards) {
     if (isFiveOfAKind(cards)) {
       return FIVE_OF_A_KIND;
     } else if (isFourOfAKind(cards)) {
@@ -47,7 +71,7 @@ public enum PokerHands {
   }
 
   private static boolean isThreeOfAKind(Map<String, Long> hand) {
-    return hand.size() == 3 && hand.containsValue(3L);
+    return hand.size() == 3 && hand.values().containsAll(List.of(1L, 1L, 3L));
   }
 
   private static boolean isTwoPair(Map<String, Long> hand) {

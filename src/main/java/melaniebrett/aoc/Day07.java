@@ -2,9 +2,9 @@ package melaniebrett.aoc;
 
 import static java.lang.Long.parseLong;
 import static java.util.stream.Collectors.toMap;
+import static melaniebrett.aoc.Utils.DECIMAL_FORMAT;
 
 import java.nio.file.Path;
-import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
 import melaniebrett.aoc.models.Hand;
@@ -20,14 +20,11 @@ public class Day07 {
   public static void solution() {
     List<String> inputs = Utils.getInputLines(inputPath);
 
-    DecimalFormat df = new DecimalFormat("#");
-    df.setMaximumFractionDigits(8);
-
     logger.info("Day " + DAY);
-    logger.info("Part 1: {}", df.format(part1(inputs)));
-    //    Part 1:
-    logger.info("Part 2: {}", part2(inputs));
-    //    Part 2:
+    logger.info("Part 1: {}", DECIMAL_FORMAT.format(part1(inputs)));
+    //    Part 1: 254024898
+    logger.info("Part 2: {}", DECIMAL_FORMAT.format(part2(inputs)));
+    //    Part 2: 254115617
   }
 
   public static double part1(List<String> inputs) {
@@ -44,8 +41,19 @@ public class Day07 {
     return result;
   }
 
-  public static int part2(List<String> inputs) {
-    return 0;
+  public static double part2(List<String> inputs) {
+    List<String> inputsWild = inputs.stream().map(s -> s.replace("J", "W")).toList();
+    Map<Hand, Long> handToBid = getHandToBid(inputsWild);
+
+    List<Hand> sortedHands =
+        handToBid.keySet().stream().sorted(HandComparator.byRankingWildByCards).toList();
+
+    double result = 0;
+    for (int i = sortedHands.size() - 1; i >= 0; i--) {
+      result += handToBid.get(sortedHands.get(i)) * (sortedHands.size() - i);
+    }
+
+    return result;
   }
 
   private static Map<Hand, Long> getHandToBid(List<String> inputs) {

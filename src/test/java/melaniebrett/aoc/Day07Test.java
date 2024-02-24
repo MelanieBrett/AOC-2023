@@ -18,8 +18,8 @@ class Day07Test {
 
   @Test
   public void part2() {
-    int answer = Day00.part2(input);
+    double answer = Day07.part2(input);
 
-    assertEquals(0, answer);
+    assertEquals(5905L, answer);
   }
 }

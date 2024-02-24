@@ -16,7 +16,8 @@ public enum Card {
   FIVE("5"),
   FOUR("4"),
   THREE("3"),
-  TWO("2");
+  TWO("2"),
+  WILD("W");
 
   private final String value;
 

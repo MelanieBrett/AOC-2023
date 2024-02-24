@@ -28,11 +28,15 @@ public record Hand(Card first, Card second, Card third, Card fourth, Card fifth)
   }
 
   public static class HandComparator {
-    static Comparator<Hand> byRanking = Comparator.comparing(PokerHands::getStrength);
-    public static Comparator<Hand> byRankingByCards =
+    private static final Comparator<Hand> byRanking = Comparator.comparing(PokerHands::getStrength);
+    private static final Comparator<Hand> byRankingWild =
+        Comparator.comparing(PokerHands::getStrengthWild);
+    public static final Comparator<Hand> byRankingByCards =
         byRanking.thenComparing(HandComparator::compareByCards);
+    public static final Comparator<Hand> byRankingWildByCards =
+        byRankingWild.thenComparing(HandComparator::compareByCards);
 
-    public static int compareByCards(Hand hand1, Hand hand2) {
+    private static int compareByCards(Hand hand1, Hand hand2) {
       List<Card> cards1 = hand1.cardList();
       List<Card> cards2 = hand2.cardList();
 

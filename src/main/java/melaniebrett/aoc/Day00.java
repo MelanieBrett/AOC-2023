@@ -1,5 +1,7 @@
 package melaniebrett.aoc;
 
+import static melaniebrett.aoc.Utils.DECIMAL_FORMAT;
+
 import java.nio.file.Path;
 import java.util.List;
 import org.slf4j.Logger;
@@ -14,17 +16,17 @@ public class Day00 {
     List<String> inputs = Utils.getInputLines(inputPath);
 
     logger.info("Day " + DAY);
-    logger.info("Part 1: {}", part1(inputs));
+    logger.info("Part 1: {}", DECIMAL_FORMAT.format(part1(inputs)));
     //    Part 1:
-    logger.info("Part 2: {}", part2(inputs));
+    logger.info("Part 2: {}", DECIMAL_FORMAT.format(part2(inputs)));
     //    Part 2:
   }
 
-  public static int part1(List<String> inputs) {
+  public static double part1(List<String> inputs) {
     return 0;
   }
 
-  public static int part2(List<String> inputs) {
+  public static double part2(List<String> inputs) {
     return 0;
   }
 }
