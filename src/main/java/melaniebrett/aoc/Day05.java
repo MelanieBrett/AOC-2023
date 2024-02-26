@@ -18,33 +18,41 @@ public class Day05 {
   private static final String DAY = "05";
   private static final Logger logger = LoggerFactory.getLogger(Day05.class);
   private static final Path inputPath = new Utils().loadFileAsPath(String.format("Day%s.txt", DAY));
+  List<String> inputs;
+  private final Map<Range<Double>, Double> seedToSoil;
+  private final Map<Range<Double>, Double> soilToFertilizer;
+  private final Map<Range<Double>, Double> fertilizerToWater;
+  private final Map<Range<Double>, Double> waterToLight;
+  private final Map<Range<Double>, Double> lightToTemperature;
+  private final Map<Range<Double>, Double> temperatureToHumidity;
+  private final Map<Range<Double>, Double> humidityToLocation;
+
+  public Day05() {
+    this.inputs = Utils.getInputLines(inputPath);
+    String input = String.join("\n", inputs);
+    this.seedToSoil = getMapInput("seed-to-soil", input);
+    this.soilToFertilizer = getMapInput("soil-to-fertilizer", input);
+    this.fertilizerToWater = getMapInput("fertilizer-to-water", input);
+    this.waterToLight = getMapInput("water-to-light", input);
+    this.lightToTemperature = getMapInput("light-to-temperature", input);
+    this.temperatureToHumidity = getMapInput("temperature-to-humidity", input);
+    this.humidityToLocation = getMapInput("humidity-to-location", input);
+  }
 
   public void solution() {
-    List<String> inputs = Utils.getInputLines(inputPath);
 
     logger.info("Day " + DAY);
-    logger.info("Part 1: {}", String.format("%f", this.part1(inputs)));
+    logger.info("Part 1: {}", String.format("%f", part1()));
     //    Part 1: 173706076
-    logger.info("Part 2: {}", this.part2(inputs));
+    logger.info("Part 2: {}", part2(inputs));
     //    Part 2:
   }
 
-  public Double part1(List<String> inputs) {
-    String input = String.join("\n", inputs);
-
+  public Double part1() {
     List<Double> seeds =
         Stream.of(inputs.get(0).replaceAll("seeds: ", "").split(" "))
             .map(Double::parseDouble)
             .toList();
-
-    Map<Range<Double>, Double> seedToSoil = getMapInput("seed-to-soil", input);
-    Map<Range<Double>, Double> soilToFertilizer = getMapInput("soil-to-fertilizer", input);
-    Map<Range<Double>, Double> fertilizerToWater = getMapInput("fertilizer-to-water", input);
-    Map<Range<Double>, Double> waterToLight = getMapInput("water-to-light", input);
-    Map<Range<Double>, Double> lightToTemperature = getMapInput("light-to-temperature", input);
-    Map<Range<Double>, Double> temperatureToHumidity =
-        getMapInput("temperature-to-humidity", input);
-    Map<Range<Double>, Double> humidityToLocation = getMapInput("humidity-to-location", input);
 
     return seeds.stream()
         .map(seed -> getDestinationFromSource(seed, seedToSoil))
