@@ -15,6 +15,8 @@ public class Main {
     Day03.solution();
     Day04.solution();
     new Day05().solution();
+    Day06.solution();
+    Day07.solution();
   }
 
   private static void welcome() {

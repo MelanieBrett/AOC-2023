@@ -11,14 +11,14 @@ class Day00Test {
 
   @Test
   public void part1() {
-    int answer = Day00.part1(input);
+    double answer = Day00.part1(input);
 
     assertEquals(0, answer);
   }
 
   @Test
   public void part2() {
-    int answer = Day00.part2(input);
+    double answer = Day00.part2(input);
 
     assertEquals(0, answer);
   }

@@ -4,9 +4,12 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class Utils {
+
+  public static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("#");
 
   public Path loadFileAsPath(final String fileName) {
     ClassLoader classLoader = getClass().getClassLoader();
